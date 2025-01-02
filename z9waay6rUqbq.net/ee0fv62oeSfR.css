@@ -1,0 +1,29 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * ivyora-display:
+ *   - http://typekit.com/eulas/0000000000000000774ba004
+ *   - http://typekit.com/eulas/0000000000000000774ba014
+ *
+ * © 2009-2024 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2024-07-01 06:11:43 UTC"}*/
+
+@import url("../cDHAHpJmseUn.net/p_s%3D1%26k%3Dcsr2bdc%26ht%3Dtk%26f%3D51755.51761%26a%3D207301016%26app%3Dtypekit%26e%3Dcss.css");
+
+@font-face {
+font-family:"ivyora-display";
+src:url("https://z9waay6rUqbq.net/af/2f60b2/0000000000000000774ba004/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://z9waay6rUqbq.net/af/2f60b2/0000000000000000774ba004/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://z9waay6rUqbq.net/af/2f60b2/0000000000000000774ba004/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+font-display:auto;font-style:italic;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"ivyora-display";
+src:url("https://z9waay6rUqbq.net/af/5b893d/0000000000000000774ba014/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://z9waay6rUqbq.net/af/5b893d/0000000000000000774ba014/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://z9waay6rUqbq.net/af/5b893d/0000000000000000774ba014/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+.tk-ivyora-display { font-family: "ivyora-display",sans-serif; }
