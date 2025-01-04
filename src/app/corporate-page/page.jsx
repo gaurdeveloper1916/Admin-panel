@@ -1,21 +1,32 @@
-'use client';
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Lenis from 'lenis';
-import SectionOne from '@/components/SectionOne';
-import SectionTwo from '@/components/SectionTwo';
-const CorporatePage = () => {
+"use client";
+import SectionOne from "@/components/SectionOne";
+import SectionTwo from "@/components/SectionTwo";
+import SectionFour from "@/components/SectionFour";
+import Lenis from "lenis";
+import "./styles.css";
 
-    return (
-        <section className="min-vh-100">
-            {/* Section one */}
-            <SectionOne />
-            {/* Section two */}
-            <SectionTwo />
-        </section>
-    );
+const CorporatePage = () => {
+  // Initialize Lenis
+  const lenis = new Lenis();
+
+  // Use requestAnimationFrame to continuously update the scroll
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
+  return (
+    <section className="min-vh-100">
+      {/* Section one */}
+      <SectionOne />
+      {/* Section two */}
+      <SectionTwo />
+      {/* Section three */}
+      <SectionFour />
+    </section>
+  );
 };
 
 export default CorporatePage;

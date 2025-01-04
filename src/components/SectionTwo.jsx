@@ -44,10 +44,10 @@ const SectionTwo = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="min-vh-100 d-flex align-items-center" style={{ backgroundColor: '#141414' }}>
+    <section ref={sectionRef} className="min-vh-100 d-flex align-items-center position-relative" style={{ backgroundColor: '#141414', zIndex: 1 }}>
       <div className="sec-1 container">
         <div className="row">
-          <div className="col-lg-12">
+          <div className="col-lg-12 position-relative" style={{ zIndex: 2 }}>
             <div className="wenn-ct d-flex flex-column gap-4">
               {[
                 {
@@ -71,7 +71,7 @@ const SectionTwo = () => {
                   ref={el => textRefs.current[index] = el}
                   className="line text-white"
                   style={{ 
-                    fontSize: "2.8rem",
+                    fontSize: "2.3rem",
                     paddingLeft: index === 0 ? 0 : index === 1 ? "4rem" : "9rem"
                   }}
                 >
@@ -84,14 +84,62 @@ const SectionTwo = () => {
           </div>
         </div>
 
-        <div className="gradient-circles position-absolute">
-          <div className="gradient-ct blue">
-            <div className="gradient-circle blue"></div>
-          </div>
-          <div className="gradient-ct pink">
-            <div className="gradient-circle pink"></div>
+        {/* Gradient Circles */}
+        <div className="position-absolute" style={{ 
+          bottom: '0', 
+          left: '0',
+          width: '500px',
+          height: '500px',
+          zIndex: 1,
+          opacity: 0.8,
+          pointerEvents: 'none'
+        }}>
+          <div className="position-relative w-100 h-100">
+            {/* Blue Gradient */}
+            <div className="position-absolute" style={{
+              width: '300px',
+              height: '300px',
+              opacity: 0.5,
+              borderRadius: '50%',
+              filter: 'blur(80px)',
+              background: 'radial-gradient(circle at 50% 50%, rgba(168, 210, 241, 0.5) 0%, rgba(168, 210, 241, 0) 70%)',
+              animation: 'float 20s infinite',
+              top: '0',
+              left: '0'
+            }}></div>
+            
+            {/* Pink Gradient */}
+            <div className="position-absolute" style={{
+              width: '300px',
+              height: '300px',
+              opacity: 0.5,
+              borderRadius: '50%',
+              filter: 'blur(80px)',
+              background: 'radial-gradient(circle, rgba(255, 180, 238, 0.5) 0%, rgba(255, 180, 238, 0) 70%)',
+              animation: 'floattwo 30s infinite',
+              bottom: '0',
+              right: '0'
+            }}></div>
           </div>
         </div>
+
+        {/* Animation Keyframes */}
+        <style jsx global>{`
+          @keyframes float {
+            0% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.1) translate(0, 5%); }
+            50% { transform: scale(0.9) translate(2%, -7.5%); }
+            75% { transform: scale(1.2) translate(0, -5%); }
+            100% { transform: scale(1) translate(0, 0); }
+          }
+          @keyframes floattwo {
+            0% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.2) translate(5%, 2%); }
+            50% { transform: scale(0.9) translate(-5%, -3%); }
+            75% { transform: scale(1.2) translate(3%, 3%); }
+            100% { transform: scale(1) translate(0, 0); }
+          }
+        `}</style>
       </div>
     </section>
   );
