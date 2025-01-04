@@ -37,9 +37,9 @@ const SectionOne = () => {
 
   const animate = () => {
     if (xPercent <= -100) {
-      xPercent = 0;
-    } else if (xPercent > 0) {
       xPercent = -100;
+    } else if (xPercent > 0) {
+      xPercent = 0;
     }
     
     gsap.set(firstText.current, { xPercent: xPercent });
