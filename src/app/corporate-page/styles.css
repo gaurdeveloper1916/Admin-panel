@@ -212,6 +212,7 @@
   body {
     font-size: 3.83rem;
     line-height: 1.44;
+    color: white;
   }
   @media (min-width: 759px) {
     body {
