@@ -70,7 +70,7 @@ const SectionOne = () => {
           className="container-fluid p-0 position-relative"
           style={{ zIndex: 2 }}
         >
-          <div className="row align-items-center min-vh-100">
+          <div className="d-flex align-items-center min-vh-100">
             <div className="col-12">
               <div className={styles.sliderContainer}>
                 <div ref={slider} className={styles.slider}>

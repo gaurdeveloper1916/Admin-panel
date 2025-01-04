@@ -7,27 +7,6 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 const SectionFive = () => {
   useEffect(() => {
-    // Add necessary styles for image scaling
-    const style = document.createElement('style');
-    style.textContent = `
-      .sec-4-scroll-wrap .bg {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-      .sec-4-scroll-wrap .bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform-origin: center center;
-        will-change: transform;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Clear any existing ScrollTriggers
-    ScrollTrigger.getAll().forEach(t => t.kill());
     
     // Initialize background image scale
     const bgImage = document.querySelector('.sec-4-scroll-wrap .bg img');
@@ -42,7 +21,6 @@ const SectionFive = () => {
 
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
-      document.head.removeChild(style);
     };
   }, []);
 
