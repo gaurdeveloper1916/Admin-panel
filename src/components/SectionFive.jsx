@@ -122,6 +122,58 @@ const SectionFive = () => {
           animation: tl,
         });
       },
+
+      // Mobile animations
+      "(max-width: 760px)": function () {
+        const gebiet1 = document.querySelector(".gebiet-ct:nth-of-type(1)");
+        const gebiet2 = document.querySelector(".gebiet-ct:nth-of-type(2)");
+        const gebiet3 = document.querySelector(".gebiet-ct:nth-of-type(3)");
+        const gebiet4 = document.querySelector(".gebiet-ct:nth-of-type(4)");
+        const gebiet5 = document.querySelector(".gebiet-ct:nth-of-type(5)");
+        const gebiet6 = document.querySelector(".gebiet-ct:nth-of-type(6)");
+
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "none"
+          }
+        });
+
+        [gebiet1, gebiet2, gebiet3, gebiet4, gebiet5, gebiet6].forEach((gebiet) => {
+          gsap.set(gebiet, {
+            motionPath: {
+              path: "#motionPath",
+              align: "#motionPath",
+              alignOrigin: [0.5, 0.5],
+              autoRotate: true,
+              start: 0,
+              end: 1,
+            }
+          });
+        });
+
+        const delays = [0, 0.166, 0.333, 0.5, 0.666, 0.833];
+        [gebiet1, gebiet2, gebiet3, gebiet4, gebiet5, gebiet6].forEach((gebiet, index) => {
+          tl.to(gebiet, {
+            motionPath: {
+              path: "#motionPath",
+              align: "#motionPath",
+              alignOrigin: [0.5, 0.5],
+              autoRotate: true,
+              start: 1,
+              end: 0,
+            },
+            immediateRender: true,
+          }, delays[index]);
+        });
+
+        ScrollTrigger.create({
+          trigger: ".sec-4-scroll-wrap",
+          start: "top 30%",
+          end: "bottom 70%",
+          scrub: true,
+          animation: tl,
+        });
+      },
     });
   };
 

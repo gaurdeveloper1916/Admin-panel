@@ -2697,6 +2697,10 @@
     width: 16.39rem;
     background-color: #4A4A4A;
     height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
   main .sec-6 .reviewsSwiperMobile .swiper-buttons-ct .swiper-scrollbar .swiper-scrollbar-drag {
     height: 1px;

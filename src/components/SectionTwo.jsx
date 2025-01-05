@@ -44,11 +44,11 @@ const SectionTwo = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="min-vh-100 d-flex align-items-center position-relative" style={{ backgroundColor: '#141414', zIndex: 1 }}>
+    <section ref={sectionRef} className="min-vh-100 d-flex align-items-center position-relative overflow-hidden" style={{ backgroundColor: '#141414', zIndex: 1 }}>
       <div className="sec-1 container">
         <div className="row">
           <div className="col-lg-12 position-relative" style={{ zIndex: 2 }}>
-            <div className="wenn-ct d-flex flex-column gap-4">
+            <div className="wenn-ct d-flex flex-column" style={{ gap: window.innerWidth <= 768 ? "7rem" : "2rem" }}>
               {[
                 {
                   text: "Wenn es höchste Zeit",
@@ -71,8 +71,12 @@ const SectionTwo = () => {
                   ref={el => textRefs.current[index] = el}
                   className="line text-white"
                   style={{ 
-                    fontSize: "2.3rem",
-                    paddingLeft: index === 0 ? 0 : index === 1 ? "4rem" : "9rem"
+                    fontSize: window.innerWidth <= 768 ? "5.6rem" : "2.4rem", padding: "1rem",
+                    paddingLeft: index === 0 
+                      ? window.innerWidth <= 768 ? "3rem" : 0 
+                      : index === 1 
+                        ? window.innerWidth <= 768 ? "10rem" : "4rem"
+                        : window.innerWidth <= 768 ? "17rem" : "9rem"
                   }}
                 >
                   {item.text}{' '}

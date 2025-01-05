@@ -82,8 +82,8 @@ const SectionFour = () => {
                       <img
                         alt="Portrait von Tina Genßler"
                         class="lazy"
-                        src="images/placeholder.png"
-                        data-src="images/index/tina.jpg"
+                        src="tina.jpg"
+                        data-src="tina.jpg"
                         data-parallax-target=""
                       />
                     </picture>

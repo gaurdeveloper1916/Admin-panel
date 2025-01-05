@@ -110,8 +110,8 @@ const SectionOne = () => {
             {/* Content Section */}
             <div className="container position-absolute bottom-0 left-0 mt-5 p-5 py-0">
               <div className="row p-4">
-                <div className="col-md-6 p-3">
-                  <p className="lead fs-3 text-white-50 p-2">
+                <div className="col-md-8 p-3">
+                  <p className="lead text-white-50 p-4 pb-10 p-md-2" style={{ fontSize: window.innerWidth <= 768 ? "5rem" : "2.2rem", padding: "1rem" }}>
                     Ob Firmenfeier, Produktlaunch oder privates Fest – ich helfe
                     euch dabei, Events in
                     <em className="fst-italic">unvergessliche Momente</em> zu

@@ -90,7 +90,7 @@ const SectionSeven = () => {
       arrows: false,
       spaceBetween: 30,
       scrollbar: {
-        el: '.swiper-sc rollbar',
+        el: '.swiper-scrollbar',
         draggable: true,
       },
     });
@@ -233,14 +233,14 @@ const SectionSeven = () => {
                 <picture className="finger">
                   <source
                     media="(min-width: 760px)"
-                    srcSet="images/placeholder.png"
-                    data-srcset="images/index/finger.svg"
+                    srcSet="section7/finger.svg"
+                    data-srcset="/section7/finger.svg"
                   />
                   <img
                     alt="Finger - Icon"
                     className="lazy"
-                    src="images/placeholder.png"
-                    data-src="images/index/finger.svg"
+                    src="/section7/finger.svg"
+                    data-src="/section7/finger.svg"
                   />
                 </picture>
                 <div className="swiper-wrapper">
@@ -250,14 +250,14 @@ const SectionSeven = () => {
                         <picture>
                           <source
                             media="(min-width: 760px)"
-                            srcset="images/placeholder.png"
-                            data-srcset="images/index/anne-mobile.png"
+                            srcset="/section7/anna-mobile.png"
+                            data-srcset="/section7/anna-mobile.png"
                           />
                           <img
                             alt="Anne Kikuts, Director Marketing, IBM iX DACH"
                             className="lazy"
-                            src="images/placeholder.png"
-                            data-src="images/index/anne-mobile.png"
+                            src="/section7/anna-mobile.png"
+                            data-src="/section7/anna-mobile.png"
                           />
                         </picture>
                       </div>
@@ -289,14 +289,14 @@ const SectionSeven = () => {
                         <picture>
                           <source
                             media="(min-width: 760px)"
-                            srcset="images/placeholder.png"
-                            data-srcset="images/index/anna-mobile.png"
+                            srcset="/section7/anna-mobile.png"
+                            data-srcset="/section7/anna-mobile.png"
                           />
                           <img
                             alt="Anna-Corina Meyer, Managing Director, Mallorca Elements"
                             className="lazy"
-                            src="images/placeholder.png"
-                            data-src="images/index/anna-mobile.png"
+                            src="/section7/anna-mobile.png"
+                            data-src="/section7/anna-mobile.png"
                           />
                         </picture>
                       </div>
@@ -329,14 +329,14 @@ const SectionSeven = () => {
                         <picture>
                           <source
                             media="(min-width: 760px)"
-                            srcset="images/placeholder.png"
-                            data-srcset="images/index/aljoscha-mobile.png"
+                            srcset="/section7/aljoscha-mobile.png"
+                            data-srcset="/section7/aljoscha-mobile.png"
                           />
                           <img
                             alt="Aljoscha Höhn, Moderator"
                             className="lazy"
-                            src="images/placeholder.png"
-                            data-src="images/index/aljoscha-mobile.png"
+                            src="/section7/aljoscha-mobile.png"
+                            data-src="/section7/aljoscha-mobile.png"
                           />
                         </picture>
                       </div>
@@ -358,14 +358,14 @@ const SectionSeven = () => {
                         <picture>
                           <source
                             media="(min-width: 760px)"
-                            srcset="images/placeholder.png"
-                            data-srcset="images/index/sarah-mobile.png"
+                            srcset="/section7/sarah-mobile.png"
+                            data-srcset="/section7/sarah-mobile.png"
                           />
                           <img
                             alt="Sarah Zielke-Vogt, Eventmanagerin, Telekom Deutschland GmbH"
                             className="lazy"
-                            src="images/placeholder.png"
-                            data-src="images/index/sarah-mobile.png"
+                            src="/section7/sarah-mobile.png"
+                            data-src="/section7/sarah-mobile.png"
                           />
                         </picture>
                       </div>
