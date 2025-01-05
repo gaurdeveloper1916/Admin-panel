@@ -40,7 +40,10 @@ const SectionTwo = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   return (
@@ -71,7 +74,7 @@ const SectionTwo = () => {
                   ref={el => textRefs.current[index] = el}
                   className="line text-white"
                   style={{ 
-                    fontSize: window.innerWidth <= 768 ? "5.6rem" : "2.4rem", padding: "1rem",
+                    fontSize: window.innerWidth <= 768 ? "5.5rem" : "2.4rem", padding: "1rem",
                     paddingLeft: index === 0 
                       ? window.innerWidth <= 768 ? "3rem" : 0 
                       : index === 1 

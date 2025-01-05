@@ -5,10 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from '@studio-freight/lenis';
 import Swiper from 'swiper';
-import { Navigation, Scrollbar, Controller } from 'swiper/modules';
+import { Navigation, Scrollbar, Controller, EffectFade, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
+import 'swiper/css/effect-fade';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,40 +84,94 @@ const SectionSeven = () => {
   }, []);
 
   useEffect(() => {
-    // Initialize Mobile Swiper
-    const mobileSwiper = new Swiper('.reviewsSwiperMobile', {
-      modules: [Scrollbar],
-      slidesPerView: 1,
-      arrows: false,
-      spaceBetween: 30,
-      scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-      },
-    });
+    let mobileSwiper;
+    let desktopSwiper;
+    let galleryThumbs;
 
-    // Initialize Desktop Swipers
-    const imgSwiper = new Swiper('.imgSwiper', {
-      modules: [Navigation, Controller],
-      slidesPerView: 1,
-      spaceBetween: 30,
-      allowTouchMove: false,
-    });
+    const initSwiper = () => {
+      if (document.querySelector('.swiper')) {
+        if (window.innerWidth < 760) {
+          mobileSwiper = new Swiper('.swiper.reviewsSwiperMobile', {
+            modules: [Navigation, Scrollbar, A11y],
+            loop: true,
+            autoHeight: true,
+            speed: 400,
+            slidesPerView: 1,
+            watchSlidesProgress: true,
+            a11y: {
+              prevSlideMessage: 'Previous slide',
+              nextSlideMessage: 'Next slide',
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            scrollbar: {
+              el: '.swiper-scrollbar',
+            },
+          });
 
-    const textSwiper = new Swiper('.reviewsSwiperDesktop', {
-      modules: [Navigation, Controller],
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+          let isTouched = false;
 
-    // Link both desktop swipers
-    imgSwiper.controller.control = textSwiper;
-    textSwiper.controller.control = imgSwiper;
+          mobileSwiper.on('touchStart', function () {
+            isTouched = true;
+          });
+
+          mobileSwiper.on('slideChange', function () {
+            if (isTouched) {
+              mobileSwiper.el.classList.add('touched');
+              isTouched = false; // Reset the flag
+            }
+          });
+        } else {
+          desktopSwiper = new Swiper('.swiper.reviewsSwiperDesktop', {
+            modules: [Navigation, EffectFade, A11y],
+            loop: true,
+            autoHeight: true,
+            speed: 700,
+            allowTouchMove: false,
+            slidesPerView: 1,
+            initialSlide: 1,
+            effect: 'fade',
+            fadeEffect: {
+              crossFade: true
+            },
+            a11y: {
+              prevSlideMessage: 'Previous slide',
+              nextSlideMessage: 'Next slide',
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          });
+
+          galleryThumbs = new Swiper('.swiper.imgSwiper', {
+            modules: [Navigation],
+            slidesPerView: 2,
+            speed: 700,
+            loop: true,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          });
+        }
+      }
+    };
+
+    // Initialize Swiper
+    initSwiper();
+
+    // Handle window resize
+    const handleResize = () => {
+      if (mobileSwiper) mobileSwiper.destroy();
+      if (desktopSwiper) desktopSwiper.destroy();
+      if (galleryThumbs) galleryThumbs.destroy();
+      initSwiper();
+    };
+
+    window.addEventListener('resize', handleResize);
 
     // Cursor follow functionality
     const cursorFollow = document.querySelector(".cursor-follow");
@@ -207,8 +262,9 @@ const SectionSeven = () => {
     // Cleanup
     return () => {
       if (mobileSwiper && mobileSwiper.destroy) mobileSwiper.destroy();
-      if (imgSwiper && imgSwiper.destroy) imgSwiper.destroy();
-      if (textSwiper && textSwiper.destroy) textSwiper.destroy();
+      if (desktopSwiper && desktopSwiper.destroy) desktopSwiper.destroy();
+      if (galleryThumbs && galleryThumbs.destroy) galleryThumbs.destroy();
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -403,14 +459,14 @@ const SectionSeven = () => {
                               <picture>
                                 <source
                                   media="(min-width: 760px)"
-                                  srcset="images/placeholder.png"
-                                  data-srcset="images/index/anna-desk.png"
+                                  srcset="section7/anna-desk.png"
+                                  data-srcset="section7/anna-desk.png"
                                 />
                                 <img
                                   alt="Anna-Corina Meyer, Managing Director, Mallorca Elements"
                                   className="lazy"
-                                  src="images/placeholder.png"
-                                  data-src="images/index/anna-desk.png"
+                                  src="section7/anna-desk.png"
+                                  data-src="section7/anna-desk.png"
                                 />
                               </picture>
                             </div>
@@ -422,14 +478,14 @@ const SectionSeven = () => {
                               <picture>
                                 <source
                                   media="(min-width: 760px)"
-                                  srcset="images/placeholder.png"
-                                  data-srcset="images/index/anne-desk.png"
+                                  srcset="section7/anne-desk.png"
+                                  data-srcset="section7/anne-desk.png"
                                 />
                                 <img
                                   alt="Anne Kikuts, Director Marketing, IBM iX DACH"
                                   className="lazy"
-                                  src="images/placeholder.png"
-                                  data-src="images/index/anne-desk.png"
+                                  src="section7/anne-desk.png"
+                                  data-src="section7/anne-desk.png"
                                 />
                               </picture>
                             </div>
@@ -441,14 +497,14 @@ const SectionSeven = () => {
                               <picture>
                                 <source
                                   media="(min-width: 760px)"
-                                  srcset="images/placeholder.png"
-                                  data-srcset="images/index/sarah-desk.png"
+                                  srcset="section7/sarah-desk.png"
+                                  data-srcset="section7/sarah-desk.png"
                                 />
                                 <img
                                   alt="Sarah Zielke-Vogt, Eventmanagerin, Telekom Deutschland GmbH"
                                   className="lazy"
-                                  src="images/placeholder.png"
-                                  data-src="images/index/sarah-desk.png"
+                                  src="section7/sarah-desk.png"
+                                  data-src="section7/sarah-desk.png"
                                 />
                               </picture>
                             </div>
@@ -460,14 +516,14 @@ const SectionSeven = () => {
                               <picture>
                                 <source
                                   media="(min-width: 760px)"
-                                  srcset="images/placeholder.png"
-                                  data-srcset="images/index/aljoscha-desk.png"
+                                  srcset="section7/aljoscha-desk.png"
+                                  data-srcset="section7/aljoscha-desk.png"
                                 />
                                 <img
                                   alt="Aljoscha Höhn, Moderator"
                                   className="lazy"
-                                  src="images/placeholder.png"
-                                  data-src="images/index/aljoscha-desk.png"
+                                  src="section7/aljoscha-desk.png"
+                                  data-src="section7/aljoscha-desk.png"
                                 />
                               </picture>
                             </div>

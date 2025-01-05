@@ -1,128 +1,226 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "../app/corporate-page/sectionOne.module.css";
 
 const SectionOne = () => {
-  const firstText = useRef(null);
-  const secondText = useRef(null);
-  const slider = useRef(null);
-  let xPercent = 0;
-  let direction = 1;
-
   useEffect(() => {
+    // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Create scroll trigger for direction control
-    gsap.to(slider.current, {
-      scrollTrigger: {
-        trigger: document.documentElement,
-        scrub: 0.25,
-        start: 0,
-        end: window.innerHeight,
-        onUpdate: (e) => {
-          direction = e.direction * -1;
-          console.log(direction);
+
+    const marqueeElements = document.querySelectorAll('[data-marquee-target]');
+
+    marqueeElements.forEach((marquee) => {
+      const marqueeContent = marquee.querySelector('.marquee-content');
+      const marqueeScroll = marquee.querySelector('.marquee-scroll');
+      
+      // Calculate marquee speed
+      const marqueeItemsWidth = marqueeContent.offsetWidth;
+      let marqueeSpeed = Number(marquee.getAttribute('data-marquee-speed')) * (marqueeItemsWidth / window.innerWidth);
+
+      // Duplicate content based on data-marquee-duplicate attribute
+      if (marquee.getAttribute('data-marquee-duplicate') === "3") {
+        for (let i = 0; i < 3; i++) {
+          const clone = marqueeContent.cloneNode(true);
+          marqueeScroll.appendChild(clone);
         }
-      },
-      x: "-500px",
+      } else {
+        const clone = marqueeContent.cloneNode(true);
+        marqueeScroll.appendChild(clone);
+      }
+
+      // Adjust speed for different screen sizes
+      if (window.innerWidth <= 540) {
+        marqueeSpeed = marqueeSpeed * 0.25;
+      } else if (window.innerWidth <= 1024) {
+        marqueeSpeed = marqueeSpeed * 0.5;
+      }
+
+      // Set initial direction
+      let marqueeDirection = marquee.getAttribute('data-marquee-direction') === 'right' ? -1 : 1;
+
+      // Create the marquee animation
+      const marqueeAnim = gsap.to(marquee.querySelectorAll('.marquee-content'), {
+        xPercent: -100,
+        repeat: -1,
+        duration: marqueeSpeed,
+        ease: "linear",
+        paused: true
+      }).totalProgress(0.5);
+
+      gsap.set(marquee.querySelectorAll(".marquee-content"), {
+        xPercent: 50
+      });
+
+      // Create ScrollTrigger
+      ScrollTrigger.create({
+        trigger: marquee,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate(self) {
+          if (self.direction !== marqueeDirection) {
+            marqueeDirection *= -1;
+            if (marquee.getAttribute('data-marquee-direction') === 'right') {
+              gsap.to(marqueeAnim, {
+                timeScale: (marqueeDirection * -1),
+                overwrite: true
+              });
+            } else {
+              gsap.to(marqueeAnim, {
+                timeScale: marqueeDirection,
+                overwrite: true
+              });
+            }
+          }
+          marquee.setAttribute('data-marquee-status', 
+            self.direction === -1 ? 'normal' : 'inverted'
+          );
+        },
+        onEnter: () => marqueeAnim.play(),
+      });
+
+      // Extra speed on scroll
+      const marqueeScrollSpeed = Number(marquee.getAttribute('data-marquee-scroll-speed'));
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: marquee,
+          start: "0% 100%",
+          end: "100% 0%",
+          scrub: 0
+        }
+      });
+
+      if (marquee.getAttribute('data-marquee-direction') === 'left') {
+        tl.fromTo(marqueeScroll, {
+          x: `${marqueeScrollSpeed}vw`,
+        }, {
+          x: `${marqueeScrollSpeed * -1}vw`,
+          ease: "none"
+        });
+      } else if (marquee.getAttribute('data-marquee-direction') === 'right') {
+        tl.fromTo(marqueeScroll, {
+          x: `${marqueeScrollSpeed * -1}vw`,
+        }, {
+          x: `${marqueeScrollSpeed}vw`,
+          ease: "none"
+        });
+      }
     });
 
-    // Start the animation loop
-    requestAnimationFrame(animate);
-
+    // Cleanup function
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
-  const animate = () => {
-    if (xPercent <= -100) {
-      xPercent = 0;
-    } else if (xPercent > 0) {
-      xPercent = -100;
-    }
-    
-    gsap.set(firstText.current, { xPercent: xPercent });
-    gsap.set(secondText.current, { xPercent: xPercent });
-    
-    requestAnimationFrame(animate);
-    xPercent += 0.03 * direction;
-  };
-
   return (
     <section>
-      <div
-        className="position-relative overflow-hidden"
-        style={{
-          backgroundImage: 'url("/first-section.png")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div
-          className="position-absolute top-0 start-0 w-100 h-100"
-          style={{ zIndex: 1 }}
-        ></div>
-
-        <div
-          className="container-fluid p-0 position-relative"
-          style={{ zIndex: 2 }}
-        >
-          <div className="d-flex align-items-center min-vh-100">
-            <div className="col-12">
-              <div className={styles.sliderContainer}>
-                <div ref={slider} className={styles.slider}>
-                  <p 
-                    ref={firstText} 
-                    className="text-uppercase fw-bold text-white"
-                    style={{
-                      fontSize: "clamp(3rem, 8vw, 8rem)",
-                      padding: "2rem 0",
-                      margin: 0,
-                      whiteSpace: "nowrap",
-                      opacity: 0.9,
-                      letterSpacing: "-2px",
-                      lineHeight: 1
-                    }}
-                  >
-                    IT'S ABOUT TIME - IT'S -&nbsp;
-                  </p>
-                  <p 
-                    ref={secondText}
-                    className="text-uppercase fw-bold text-white"
-                    style={{
-                      fontSize: "clamp(3rem, 8vw, 8rem)",
-                      padding: "2rem 0",
-                      margin: 0,
-                      whiteSpace: "nowrap",
-                      opacity: 0.9,
-                      letterSpacing: "-2px",
-                      lineHeight: 1
-                    }}
-                  >
-                    IT'S ABOUT TIME - IT'S -&nbsp;
-                  </p>
-                </div>
-              </div>
+      <header className="index-header" id="home">
+        <div className="row sub-claim-row">
+          <div className="col">
+            <div className="sub-claim">
+              <span>Ob</span> <span>Firmenfeier,</span>{" "}
+              <span>Produktlaunch</span> <span>oder</span> <span>privates</span>{" "}
+              <span>Fest</span> <span>–</span> <span>ich</span>{" "}
+              <span>helfe</span> <span>euch</span> <span>dabei,</span>{" "}
+              <span>Events</span> <span>in</span>
+              <i>
+                <span>unvergessliche</span> <span>Momente</span>
+              </i>{" "}
+              <span>zu</span> <span>verwandeln.</span>
             </div>
-            {/* Content Section */}
-            <div className="container position-absolute bottom-0 left-0 mt-5 p-5 py-0">
-              <div className="row p-4">
-                <div className="col-md-8 p-3">
-                  <p className="lead text-white-50 p-4 pb-10 p-md-2" style={{ fontSize: window.innerWidth <= 768 ? "5rem" : "2.2rem", padding: "1rem" }}>
-                    Ob Firmenfeier, Produktlaunch oder privates Fest – ich helfe
-                    euch dabei, Events in
-                    <em className="fst-italic">unvergessliche Momente</em> zu
-                    verwandeln.
-                  </p>
+          </div>
+        </div>
+        <div className="bg-ct">
+          {/* <picture
+            className="bg first-layer"
+            data-parallax-strength="2.5"
+            data-parallax-height="5"
+          >
+            <source
+              media="(min-width: 760px)"
+              srcSet="images/first-layer-desk.png"
+            />
+            <img
+              alt="Eventgesellschaft in einem Restaurant - vorderste Ebene"
+              src="images/first-layer.png"
+              data-parallax-target=""
+            />
+          </picture> */}
+          <div className="claim claim-fade-in">
+            <div
+              className="marquee"
+              data-marquee-target=""
+              data-marquee-duplicate="3"
+              data-marquee-direction="left"
+              data-marquee-status="normal"
+              data-marquee-speed="25"
+              data-marquee-scroll-speed="12"
+            >
+              <div className="marquee-scroll">
+                <div className="marquee-content">
+                  <span className="list-item">It's about time</span>
+                  <div className="line"> </div>
+                  <span className="list-item">It's about time</span>
+                  <div className="line"> </div>
+                  <span className="list-item">It's about time</span>
+                  <div className="line"> </div>
+                  <span className="list-item">It's about time</span>
+                  <div className="line"> </div>
+                  <span className="list-item">It's about time</span>
+                  <div className="line"> </div>
                 </div>
               </div>
             </div>
           </div>
+          {/* <picture
+            className="bg second-layer"
+            data-parallax-strength="3.5"
+            data-parallax-height="5"
+          >
+            <source
+              media="(min-width: 760px)"
+              srcSet="images/second-layer-desk.png"
+            />
+            <img
+              alt="Eventgesellschaft in einem Restaurant - zweite Ebene"
+              src="images/second-layer.png"
+              data-parallax-target=""
+            />
+          </picture>
+          <picture
+            className="bg third-layer"
+            data-parallax-strength="4.7"
+            data-parallax-height="5"
+          >
+            <source
+              media="(min-width: 760px)"
+              srcSet="images/third-layer-desk.png"
+            />
+            <img
+              alt="Eventgesellschaft in einem Restaurant - dritte Ebene"
+              src="images/third-layer.png"
+              data-parallax-target=""
+            />
+          </picture> */}
+          <picture
+            className="bg fourth-layer"
+            data-parallax-strength="5.5"
+            data-parallax-height="5"
+          >
+            <source
+              media="(min-width: 760px)"
+              srcSet="/first-section.png"
+            />
+            <img
+              alt="Eventgesellschaft in einem Restaurant - hinterste Ebene"
+              src="/first-section.png"
+              data-parallax-target=""
+            />
+          </picture>
         </div>
-      </div>
+      </header>
     </section>
   );
 };

@@ -14,8 +14,6 @@ const CorporatePage = () => {
     <section className="min-vh-100">
       {/* Section one */}
       <SectionOne />
-      {/* Section two */}
-      <SectionTwo />
       {/* Section three */}
       <SectionFour />
       {/* Section five */}

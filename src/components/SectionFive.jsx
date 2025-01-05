@@ -204,7 +204,7 @@ const SectionFive = () => {
                         <img
                           alt="Gesamtprojektleitung - Icon"
                           class="lazy"
-                          src="images/placeholder.png"
+                          src="section-5/gesamtprojektleitung.svg"
                           data-src="images/index/einsatzgebiete/gesamtprojektleitung.svg"
                         />
                       </picture>
@@ -222,7 +222,7 @@ const SectionFive = () => {
                       <picture>
                         <img
                           alt="Teilprojektleitung - Icon"
-                          src="images/teilprojektleitung.svg"
+                          src="section-5/teilprojektleitung.svg"
                         />
                       </picture>
                     </div>
@@ -245,7 +245,7 @@ const SectionFive = () => {
                       <picture>
                         <img
                           alt="Regie-Assistenz - Icon"
-                          src="images/regie-assistenz.svg"
+                          src="section-5/regie-assistenz.svg"
                         />
                       </picture>
                     </div>
@@ -262,7 +262,7 @@ const SectionFive = () => {
                       <picture>
                         <img
                           alt="Onsite Managerin - Icon"
-                          src="images/onsite-managerin.svg"
+                          src="section-5/onsite-managerin.svg"
                         />
                       </picture>
                     </div>
@@ -279,7 +279,7 @@ const SectionFive = () => {
                       <picture>
                         <img
                           alt="Incentive Reisen - Icon"
-                          src="images/incentive-reisen.svg"
+                          src="section-5/incentive-reisen.svg"
                         />
                       </picture>
                     </div>
@@ -296,7 +296,7 @@ const SectionFive = () => {
                       <picture>
                         <img
                           alt="Streaming Events - Icon"
-                          src="images/streaming-events.svg"
+                          src="section-5/streaming-events.svg"
                         />
                       </picture>
                     </div>
