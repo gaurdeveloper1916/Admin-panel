@@ -2386,6 +2386,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 9.84rem);
+    opacity: 0;
   }
   @media (min-width: 759px) {
     main .sec-5 .sec-5-scroll-wrap .sec-5-inner .text-ct .usp-ct {
@@ -3460,3 +3461,11 @@
   .sec-impressum .dse-infos p b, .sec-impressum .dse-infos ul b, .sec-dse .dse-infos p b, .sec-dse .dse-infos ul b {
     color: #F2F2F2;
   }/*# sourceMappingURL=style.css.map */
+
+  .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    display: none;
+  }
+
+  .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    display: none;
+  }

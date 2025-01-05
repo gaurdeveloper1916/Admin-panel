@@ -3,7 +3,8 @@ import SectionOne from "@/components/SectionOne";
 import SectionTwo from "@/components/SectionTwo";
 import SectionFour from "@/components/SectionFour";
 import SectionFive from "@/components/SectionFive";
-import Lenis from "lenis";
+import SectionSix from "@/components/SectionSix";
+import SectionSeven from "@/components/SectionSeven";
 import "./styles.css";
 
 const CorporatePage = () => {
@@ -19,6 +20,10 @@ const CorporatePage = () => {
       <SectionFour />
       {/* Section five */}
       <SectionFive />
+      {/* Section six */}
+      <SectionSix />
+      {/* Section seven */}
+      <SectionSeven />
     </section>
   );
 };
