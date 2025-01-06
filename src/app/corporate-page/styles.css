@@ -2836,6 +2836,7 @@
     justify-content: center;
     flex-shrink: 0;
     position: relative;
+    top: 0;
     cursor: pointer;
   }
   
