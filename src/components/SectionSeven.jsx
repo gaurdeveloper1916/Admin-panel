@@ -3,7 +3,6 @@
 import React, { useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import Swiper from "swiper";
 import {
   Navigation,
@@ -21,29 +20,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SectionSeven = () => {
   useLayoutEffect(() => {
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
     // Initialize animations
     const ctx = gsap.context(() => {
       gsap
@@ -87,7 +63,6 @@ const SectionSeven = () => {
     // Cleanup function
     return () => {
       ctx.revert();
-      lenis.destroy();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
@@ -138,8 +113,6 @@ const SectionSeven = () => {
             loop: true,
             autoHeight: true,
             speed: 700,
-            allowTouchMove: false,
-            loop: true,
             slidesPerView: 1,
             initialSlide: 1,
             effect: "fade",

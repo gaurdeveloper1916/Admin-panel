@@ -3,52 +3,27 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from '@studio-freight/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SectionSix = () => {
   useLayoutEffect(() => {
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    // Connect lenis to RAF for smooth animations
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Connect GSAP ScrollTrigger and Lenis
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
     // Initialize animations
     const ctx = gsap.context(() => {
       // Initial lines animation
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "top center",
-          end: "top top",
-          scrub: true,
-        },
-      })
-      .to(".sec-5 .lines-ct", {
-        height: "12.76rem",
-        autoAlpha: 1,
-      });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "top center",
+            end: "top top",
+            scrub: true,
+          },
+        })
+        .to(".sec-5 .lines-ct", {
+          height: "12.76rem",
+          autoAlpha: 1,
+        });
 
       gsap.to(".text-ct .usp-ct", {
         autoAlpha: 1,
@@ -56,146 +31,168 @@ const SectionSix = () => {
       });
 
       // Lines fade out animation
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "bottom bottom",
-          end: "bottom center",
-          scrub: 0.5,
-        },
-      })
-      .set(".sec-5 .lines-ct", {
-        autoAlpha: 0,
-      })
-      .to(".sec-5 .lines-ct", {
-        autoAlpha: 0,
-        scaleY: "0",
-      });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "bottom bottom",
+            end: "bottom center",
+            scrub: 0.5,
+          },
+        })
+        .set(".sec-5 .lines-ct", {
+          autoAlpha: 0,
+        })
+        .to(".sec-5 .lines-ct", {
+          autoAlpha: 0,
+          scaleY: "0",
+        });
 
       // USP Lines Desktop animations
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "top center",
-          end: "top+=37% center",
-          scrub: true,
-        },
-      })
-      .from(".usp-ct.one span", {
-        opacity: 0,
-        y: "6rem",
-        stagger: 0.05,
-      })
-      .to(".usp-ct.one span", {
-        opacity: 0,
-        y: "-6rem",
-        stagger: 0.05,
-      })
-      .from(".sec-5 .lines-ct .line.one .line-inner", {
-        scaleY: 0,
-      }, 0);
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "top center",
+            end: "top+=37% center",
+            scrub: true,
+          },
+        })
+        .from(".usp-ct.one span", {
+          opacity: 0,
+          y: "6rem",
+          stagger: 0.05,
+        })
+        .to(".usp-ct.one span", {
+          opacity: 0,
+          y: "-6rem",
+          stagger: 0.05,
+        })
+        .from(
+          ".sec-5 .lines-ct .line.one .line-inner",
+          {
+            scaleY: 0,
+          },
+          0
+        );
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "top+=33.33% center",
-          end: "top+=70% center",
-          scrub: true,
-        },
-      })
-      .from(".usp-ct.two span", {
-        opacity: 0,
-        y: "6rem",
-        stagger: 0.05,
-      })
-      .to(".usp-ct.two span", {
-        opacity: 0,
-        y: "-6rem",
-        stagger: 0.05,
-      })
-      .from(".sec-5 .lines-ct .line.two .line-inner", {
-        scaleY: 0,
-      }, 0);
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "top+=33.33% center",
+            end: "top+=70% center",
+            scrub: true,
+          },
+        })
+        .from(".usp-ct.two span", {
+          opacity: 0,
+          y: "6rem",
+          stagger: 0.05,
+        })
+        .to(".usp-ct.two span", {
+          opacity: 0,
+          y: "-6rem",
+          stagger: 0.05,
+        })
+        .from(
+          ".sec-5 .lines-ct .line.two .line-inner",
+          {
+            scaleY: 0,
+          },
+          0
+        );
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "top+=66.66% center",
-          end: "bottom center",
-          scrub: true,
-        },
-      })
-      .from(".usp-ct.three span", {
-        opacity: 0,
-        y: "6rem",
-        stagger: 0.05,
-      })
-      .to(".usp-ct.three span", {
-        opacity: 0,
-        y: "-6rem",
-        stagger: 0.05,
-      })
-      .from(".sec-5 .lines-ct .line.three .line-inner", {
-        scaleY: 0,
-      }, 0);
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "top+=66.66% center",
+            end: "bottom center",
+            scrub: true,
+          },
+        })
+        .from(".usp-ct.three span", {
+          opacity: 0,
+          y: "6rem",
+          stagger: 0.05,
+        })
+        .to(".usp-ct.three span", {
+          opacity: 0,
+          y: "-6rem",
+          stagger: 0.05,
+        })
+        .from(
+          ".sec-5 .lines-ct .line.three .line-inner",
+          {
+            scaleY: 0,
+          },
+          0
+        );
 
       // Gradient animations
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
-      })
-      .to(".sec-5 .gradient-ct.blue", {
-        left: "55%",
-        top: "10%",
-        autoAlpha: 1,
-        pointerEvents: "auto",
-      })
-      .to(".sec-5 .gradient-ct.pink", {
-        left: "40%",
-        top: "35%",
-        autoAlpha: 1,
-        pointerEvents: "auto",
-      }, 0);
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "top top",
+            end: "bottom top",
+            scrub: 2,
+          },
+        })
+        .to(".sec-5 .gradient-ct.blue", {
+          left: "55%",
+          top: "10%",
+          autoAlpha: 1,
+          pointerEvents: "auto",
+        })
+        .to(
+          ".sec-5 .gradient-ct.pink",
+          {
+            left: "40%",
+            top: "35%",
+            autoAlpha: 1,
+            pointerEvents: "auto",
+          },
+          0
+        );
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-inner",
-          start: "top bottom",
-          end: "top top",
-          scrub: true,
-        },
-      })
-      .from(".sec-5 .gradients-wrapper", {
-        autoAlpha: "0",
-        pointerEvents: "none",
-        scale: "0",
-        y: "-100%",
-      });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-inner",
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+          },
+        })
+        .from(".sec-5 .gradients-wrapper", {
+          autoAlpha: "0",
+          pointerEvents: "none",
+          scale: "0",
+          y: "-100%",
+        });
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sec-5-scroll-wrap",
-          start: "bottom bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      })
-      .to(".sec-5 .gradients-wrapper", {
-        autoAlpha: "0",
-        pointerEvents: "none",
-        scale: "0",
-      });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".sec-5-scroll-wrap",
+            start: "bottom bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        })
+        .to(".sec-5 .gradients-wrapper", {
+          autoAlpha: "0",
+          pointerEvents: "none",
+          scale: "0",
+        });
     });
 
     // Cleanup function
     return () => {
       ctx.revert();
-      lenis.destroy();
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
