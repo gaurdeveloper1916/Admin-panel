@@ -44,8 +44,6 @@ const SectionFive = () => {
                 start: "top bottom",
                 end: "bottom bottom",
                 scrub: 1,
-                onEnter: () => console.log("Image scale animation started"),
-                onUpdate: (self) => console.log("Progress:", self.progress)
               }
             }
           );
@@ -315,7 +313,7 @@ const SectionFive = () => {
                 <picture>
                   <source
                     media="(min-width: 760px)"
-                    srcset="/section-5-bg.jpg"
+                    srcSet="/section-5-bg.jpg"
                     data-srcset="/section-5-bg.jpg"
                   />
                   <img

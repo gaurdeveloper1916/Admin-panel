@@ -49,7 +49,7 @@ const SectionOne = () => {
       }).totalProgress(0.5);
 
       gsap.set(marquee.querySelectorAll(".marquee-content"), {
-        xPercent: 50
+        xPercent: 0
       });
 
       // Create ScrollTrigger

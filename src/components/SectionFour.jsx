@@ -77,7 +77,7 @@ const SectionFour = () => {
                       <source
                         media="(min-width: 760px)"
                         data-srcset="tina.jpg"
-                        srcset="tina.jpg"
+                        srcSet="tina.jpg"
                       />
                       <img
                         alt="Portrait von Tina Genßler"
