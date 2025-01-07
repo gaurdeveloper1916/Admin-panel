@@ -57,19 +57,19 @@ const SectionFour = () => {
   return (
     <section>
       <main>
-        <div class="sec-3 padding-outer" id="ueber">
-          <div class="row">
-            <div class="col">
-              <div class="grid-ct">
-                <h2 class="multi-line-headline text-white">
+        <div className="sec-3 padding-outer" id="ueber">
+          <div className="row">
+            <div className="col">
+              <div className="grid-ct">
+                <h2 className="multi-line-headline text-white">
                   <span>Zeit für</span>
                   <span>mitreissende</span>
                   <span>Events,</span>
                   <span>die in Erinnerung</span>
                   <span>bleiben</span>
                 </h2>
-                <div class="picture-ct">
-                  <div class="aspect-img-ct">
+                <div className="picture-ct">
+                  <div className="aspect-img-ct">
                     <picture
                       data-parallax-strength="1.2"
                       data-parallax-height="9"
@@ -81,7 +81,7 @@ const SectionFour = () => {
                       />
                       <img
                         alt="Portrait von Tina Genßler"
-                        class="lazy"
+                        className="lazy"
                         src="tina.jpg"
                         data-src="tina.jpg"
                         data-parallax-target=""
@@ -91,8 +91,8 @@ const SectionFour = () => {
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="serif-text-ct">
+            <div className="col">
+              <div className="serif-text-ct">
                 <span>Ich</span> <span>nehme</span> <span>mir</span>{" "}
                 <span>die</span> <span>Zeit,</span>
                 <span>deine</span> <span>Vision</span>{" "}

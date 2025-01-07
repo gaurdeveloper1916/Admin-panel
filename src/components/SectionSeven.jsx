@@ -629,12 +629,12 @@ const SectionSeven = () => {
         </div>
       </main>
 
-      <div class="cursor-follow">
+      <div className="cursor-follow">
         <span>
-          <picture class="arrow-left">
+          <picture className="arrow-left">
             <img
               alt="Pfeil links - Icon"
-              class="lazy"
+              className="lazy"
               src="section7/arrow-left.svg"
               data-src="section7/arrow-left.svg"
             />

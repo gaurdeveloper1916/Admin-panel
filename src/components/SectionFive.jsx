@@ -180,12 +180,12 @@ const SectionFive = () => {
   return (
     <section>
       <main>
-        <div class="sec-4" id="services">
-          <div class="sec-4-scroll-wrap">
-            <div class="sec-4-inner">
-              <div class="gebiete-wrapper">
+        <div className="sec-4" id="services">
+          <div className="sec-4-scroll-wrap">
+            <div className="sec-4-inner">
+              <div className="gebiete-wrapper">
                 <svg
-                  class="motionPath"
+                  className="motionPath"
                   viewBox="0 0 1217 124"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -197,28 +197,28 @@ const SectionFive = () => {
                   ></path>
                 </svg>
 
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Gesamtprojektleitung - Icon"
-                          class="lazy"
+                          className="lazy"
                           src="section-5/gesamtprojektleitung.svg"
                           data-src="images/index/einsatzgebiete/gesamtprojektleitung.svg"
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>Gesamtprojektleitung</i>
                       </span>
                     </div>
                   </div>
                 </div>
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Teilprojektleitung - Icon"
@@ -226,11 +226,11 @@ const SectionFive = () => {
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>
                           Teilprojektleitung
-                          <span class="extra-info">
+                          <span className="extra-info">
                             (z.B. Catering, Guestmanagement, Künstler, Logistik,
                             Content etc.)
                           </span>
@@ -239,9 +239,9 @@ const SectionFive = () => {
                     </div>
                   </div>
                 </div>
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Regie-Assistenz - Icon"
@@ -249,16 +249,16 @@ const SectionFive = () => {
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>Regie-Assistenz</i>
                       </span>
                     </div>
                   </div>
                 </div>
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Onsite Managerin - Icon"
@@ -266,16 +266,16 @@ const SectionFive = () => {
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>Onsite Managerin</i>
                       </span>
                     </div>
                   </div>
                 </div>
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Incentive Reisen - Icon"
@@ -283,16 +283,16 @@ const SectionFive = () => {
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>Incentive Reisen</i>
                       </span>
                     </div>
                   </div>
                 </div>
-                <div class="gebiet-ct">
-                  <div class="gebiet">
-                    <div class="top">
+                <div className="gebiet-ct">
+                  <div className="gebiet">
+                    <div className="top">
                       <picture>
                         <img
                           alt="Streaming Events - Icon"
@@ -300,18 +300,18 @@ const SectionFive = () => {
                         />
                       </picture>
                     </div>
-                    <div class="bottom">
-                      <span class="gebiete-title">
+                    <div className="bottom">
+                      <span className="gebiete-title">
                         <i>Streaming Events</i>
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="title-ct">
-                <h2 class="einsatzgebiete-title">Einsatzgebiete</h2>
+              <div className="title-ct">
+                <h2 className="einsatzgebiete-title">Einsatzgebiete</h2>
               </div>
-              <div class="bg">
+              <div className="bg">
                 <picture>
                   <source
                     media="(min-width: 760px)"
