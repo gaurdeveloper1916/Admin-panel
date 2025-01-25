@@ -1,0 +1,121 @@
+.section-six {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.sec-5 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sec-5-scroll-wrap {
+  position: relative;
+  height: 300vh;
+}
+
+.sec-5-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradients-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.gradient-ct {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.gradient-circle.blue {
+  background: rgba(0, 149, 255, 0.3);
+}
+
+.gradient-circle.pink {
+  background: rgba(255, 0, 149, 0.3);
+}
+
+.text-ct {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
+}
+
+.usp-ct {
+  text-align: center;
+  opacity: 0;
+  position: relative;
+}
+
+.usp-ct span {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.usp-ct span.serif {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.lines-ct {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0;
+  width: 2px;
+  opacity: 0;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 33.33%;
+}
+
+.line-inner {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform-origin: top;
+}
+
+.line.one {
+  top: 0;
+}
+
+.line.two {
+  top: 33.33%;
+}
+
+.line.three {
+  top: 66.66%;
+} 

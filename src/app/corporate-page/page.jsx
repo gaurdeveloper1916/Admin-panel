@@ -11,6 +11,7 @@ import SectionSix from "@/components/SectionSix";
 import SectionSeven from "@/components/SectionSeven";
 import SectionThree from "@/components/SectionThree";
 import "./styles.css";
+import StatisticsSection from "@/components/StatisticsSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,6 +95,7 @@ const CorporatePage = () => {
       <SectionFour />
       <SectionFive />
       <SectionSix />
+      <StatisticsSection />
       <SectionSeven />
     </section>
   );
