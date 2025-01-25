@@ -23,8 +23,8 @@ const CorporatePage = () => {
     lenisRef.current = new Lenis({
       duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
       smoothTouch: false,
@@ -40,7 +40,7 @@ const CorporatePage = () => {
     requestAnimationFrame(raf);
 
     // Update ScrollTrigger on scroll
-    lenisRef.current.on('scroll', ScrollTrigger.update);
+    lenisRef.current.on("scroll", ScrollTrigger.update);
 
     // Connect GSAP ticker to Lenis
     gsap.ticker.add((time) => {
@@ -53,9 +53,9 @@ const CorporatePage = () => {
     // Initialize scroll to anchor functionality
     const handleAnchorClick = (e) => {
       const target = e.currentTarget;
-      if (target.hasAttribute('data-anchor-target')) {
+      if (target.hasAttribute("data-anchor-target")) {
         e.preventDefault();
-        const targetId = target.getAttribute('data-anchor-target');
+        const targetId = target.getAttribute("data-anchor-target");
         lenisRef.current?.scrollTo(targetId, {
           offset: 0,
           duration: 1.2,
@@ -65,8 +65,8 @@ const CorporatePage = () => {
     };
 
     // Add click listeners to anchor elements
-    document.querySelectorAll('[data-anchor-target]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
+    document.querySelectorAll("[data-anchor-target]").forEach((anchor) => {
+      anchor.addEventListener("click", handleAnchorClick);
     });
 
     // Cleanup function
@@ -78,12 +78,12 @@ const CorporatePage = () => {
       gsap.ticker.remove(lenisRef.current?.raf);
 
       // Remove anchor click listeners
-      document.querySelectorAll('[data-anchor-target]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
+      document.querySelectorAll("[data-anchor-target]").forEach((anchor) => {
+        anchor.removeEventListener("click", handleAnchorClick);
       });
 
       // Kill all ScrollTrigger instances
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
@@ -93,9 +93,30 @@ const CorporatePage = () => {
       <SectionTwo />
       <SectionThree />
       <SectionFour />
+      <StatisticsSection
+        statistics={[
+          { value: "10+", label1: "Jahre", label2: "Event-Erfahrung" },
+          { value: "200+", label1: "Live-Events", label2: "Umgesetzte" },
+          { value: "50+", label1: "Team", label2: "Mitglieder" },
+        ]}
+      />
       <SectionFive />
-      <SectionSix />
-      <StatisticsSection />
+      {/* <SectionSix /> */}
+      <StatisticsSection
+        statistics={[
+          { value: "1M+", label1: "Active", label2: "Users" },
+          { value: "200K", label1: "Daily", label2: "Visits" },
+          { value: "99%", label1: "Customer", label2: "Satisfaction" },
+        ]}
+      />
+      <StatisticsSection
+        statistics={[
+          { value: "1M+++++++", label1: "Active", label2: "Users" },
+          { value: "200K", label1: "Daily", label2: "Visits" },
+          { value: "99%", label1: "Customer", label2: "Satisfaction" },
+        ]}
+      />
+
       <SectionSeven />
     </section>
   );

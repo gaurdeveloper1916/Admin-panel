@@ -1,32 +1,43 @@
 "use client";
 
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from './StatisticsSection.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const StatisticsSection = () => {
+const StatisticsSection = ({ statistics = [
+  { value: "500+", label1: "Successful", label2: "Projects" },
+  { value: "100+", label1: "Happy", label2: "Clients" },
+  { value: "50+", label1: "Team", label2: "Members" }
+]}) => {
+  const sectionRef = useRef(null);
+  const linesRef = useRef(null);
+  const gradientsRef = useRef(null);
+
   useLayoutEffect(() => {
-    // Initialize animations
+    const section = sectionRef.current;
+    const lines = linesRef.current;
+    const gradients = gradientsRef.current;
+
     const ctx = gsap.context(() => {
       // Initial lines animation
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
+            trigger: section.querySelector(".sec-5-scroll-wrap"),
             start: "top center",
             end: "top top",
             scrub: true,
           },
         })
-        .to(".sec-5 .lines-ct", {
+        .to(lines, {
           height: "12.76rem",
           autoAlpha: 1,
         });
 
-      gsap.to(".text-ct .usp-ct", {
+      gsap.to(section.querySelectorAll(".text-ct .usp-ct"), {
         autoAlpha: 1,
         duration: 1,
       });
@@ -35,120 +46,81 @@ const StatisticsSection = () => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
+            trigger: section.querySelector(".sec-5-scroll-wrap"),
             start: "bottom bottom",
             end: "bottom center",
             scrub: 0.5,
           },
         })
-        .set(".sec-5 .lines-ct", {
+        .set(lines, {
           autoAlpha: 0,
         })
-        .to(".sec-5 .lines-ct", {
+        .to(lines, {
           autoAlpha: 0,
           scaleY: "0",
         });
 
-      // USP Lines Desktop animations
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
-            start: "top center",
-            end: "top+=37% center",
-            scrub: true,
-          },
-        })
-        .from(".usp-ct.one span", {
-          opacity: 0,
-          y: "6rem",
-          stagger: 0.05,
-        })
-        .to(".usp-ct.one span", {
-          opacity: 0,
-          y: "-6rem",
-          stagger: 0.05,
-        })
-        .from(
-          ".sec-5 .lines-ct .line.one .line-inner",
-          {
-            scaleY: 0,
-          },
-          0
-        );
+      // Create animations for each statistic dynamically
+      statistics.forEach((_, index) => {
+        const positions = {
+          0: { start: "top center", end: "top+=37% center" },
+          1: { start: "top+=33.33% center", end: "top+=70% center" },
+          2: { start: "top+=66.66% center", end: "bottom center" }
+        };
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
-            start: "top+=33.33% center",
-            end: "top+=70% center",
-            scrub: true,
-          },
-        })
-        .from(".usp-ct.two span", {
-          opacity: 0,
-          y: "6rem",
-          stagger: 0.05,
-        })
-        .to(".usp-ct.two span", {
-          opacity: 0,
-          y: "-6rem",
-          stagger: 0.05,
-        })
-        .from(
-          ".sec-5 .lines-ct .line.two .line-inner",
-          {
-            scaleY: 0,
-          },
-          0
-        );
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
-            start: "top+=66.66% center",
-            end: "bottom center",
-            scrub: true,
-          },
-        })
-        .from(".usp-ct.three span", {
-          opacity: 0,
-          y: "6rem",
-          stagger: 0.05,
-        })
-        .to(".usp-ct.three span", {
-          opacity: 0,
-          y: "-6rem",
-          stagger: 0.05,
-        })
-        .from(
-          ".sec-5 .lines-ct .line.three .line-inner",
-          {
-            scaleY: 0,
-          },
-          0
-        );
+        const className = ['one', 'two', 'three'][index];
+        const uspElement = section.querySelector(`.usp-ct.${className}`);
+        const lineElement = section.querySelector(`.line.${className} .line-inner`);
+        
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: section.querySelector(".sec-5-scroll-wrap"),
+              start: positions[index].start,
+              end: positions[index].end,
+              scrub: true,
+            },
+          })
+          .from(uspElement.querySelectorAll("span"), {
+            opacity: 0,
+            y: "6rem",
+            stagger: 0.05,
+          })
+          .to(uspElement.querySelectorAll("span"), {
+            opacity: 0,
+            y: "-6rem",
+            stagger: 0.05,
+          })
+          .from(
+            lineElement,
+            {
+              scaleY: 0,
+            },
+            0
+          );
+      });
 
       // Gradient animations
+      const blueGradient = section.querySelector(".gradient-ct.blue");
+      const pinkGradient = section.querySelector(".gradient-ct.pink");
+
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
+            trigger: section.querySelector(".sec-5-scroll-wrap"),
             start: "top top",
             end: "bottom top",
             scrub: 2,
           },
         })
-        .to(".sec-5 .gradient-ct.blue", {
+        .to(blueGradient, {
           left: "55%",
           top: "10%",
           autoAlpha: 1,
           pointerEvents: "auto",
         })
         .to(
-          ".sec-5 .gradient-ct.pink",
+          pinkGradient,
           {
             left: "40%",
             top: "35%",
@@ -161,13 +133,13 @@ const StatisticsSection = () => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".sec-5-inner",
+            trigger: section.querySelector(".sec-5-inner"),
             start: "top bottom",
             end: "top top",
             scrub: true,
           },
         })
-        .from(".sec-5 .gradients-wrapper", {
+        .from(gradients, {
           autoAlpha: "0",
           pointerEvents: "none",
           scale: "0",
@@ -177,33 +149,32 @@ const StatisticsSection = () => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".sec-5-scroll-wrap",
+            trigger: section.querySelector(".sec-5-scroll-wrap"),
             start: "bottom bottom",
             end: "bottom top",
             scrub: true,
           },
         })
-        .to(".sec-5 .gradients-wrapper", {
+        .to(gradients, {
           autoAlpha: "0",
           pointerEvents: "none",
           scale: "0",
         });
-    });
+    }, section); // Scope GSAP context to our section
 
-    // Cleanup function
     return () => {
       ctx.revert();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
-  }, []);
+  }, [statistics]);
 
   return (
-    <section className="section-six">
+    <section ref={sectionRef} className="section-six">
       <main>
         <div className="sec-5">
           <div className="sec-5-scroll-wrap">
             <div className="sec-5-inner">
-              <div className="gradients-wrapper">
+              <div ref={gradientsRef} className="gradients-wrapper">
                 <div className="gradient-ct blue">
                   <div className="gradient-circle blue"></div>
                 </div>
@@ -212,32 +183,20 @@ const StatisticsSection = () => {
                 </div>
               </div>
               <div className="text-ct">
-                <div className="usp-ct one">
-                  <span className="serif">500+</span>
-                  <span>Successful</span>
-                  <span>Projects</span>
-                </div>
-                <div className="usp-ct two">
-                  <span className="serif">100+</span>
-                  <span>Happy</span>
-                  <span>Clients</span>
-                </div>
-                <div className="usp-ct three">
-                  <span className="serif">50+</span>
-                  <span>Team</span>
-                  <span>Members</span>
-                </div>
+                {statistics.map((stat, index) => (
+                  <div key={index} className={`usp-ct ${['one', 'two', 'three'][index]}`}>
+                    <span className="serif">{stat.value}</span>
+                    <span>{stat.label1}</span>
+                    <span>{stat.label2}</span>
+                  </div>
+                ))}
 
-                <div className="lines-ct">
-                  <div className="line one">
-                    <div className="line-inner"></div>
-                  </div>
-                  <div className="line two">
-                    <div className="line-inner"></div>
-                  </div>
-                  <div className="line three">
-                    <div className="line-inner"></div>
-                  </div>
+                <div ref={linesRef} className="lines-ct">
+                  {statistics.map((_, index) => (
+                    <div key={index} className={`line ${['one', 'two', 'three'][index]}`}>
+                      <div className="line-inner"></div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
